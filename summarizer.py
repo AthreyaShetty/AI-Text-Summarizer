@@ -1,9 +1,15 @@
 from transformers import pipeline
 
-# Use a smaller model for summarization
+# Load summarization pipeline
 summarizer = pipeline("summarization")
 
-# Example text
-input_text = "This is a short text to test summarization."
-summary = summarizer(input_text)
-print("Summary:", summary)
+text = """
+Artificial intelligence (AI) is intelligence demonstrated by machines, 
+as opposed to natural intelligence displayed by animals including humans. 
+AI research has been defined as the field of study of intelligent agents.
+"""
+
+# Generate summary
+summary = summarizer(text, max_length=50, min_length=20, do_sample=False)
+
+print(summary[0]['summary_text'])
